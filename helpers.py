@@ -1,4 +1,5 @@
 import re
+import numpy as np
 import pandas as pd
 
 class FixedWidthVariables(object):
@@ -57,8 +58,8 @@ def read_stata_dct(dct_file, **options):
                 vtype = str
             else:
                 vtype = type_map[vtype]
-                long_desc = ' '.join(t[4:]).strip('"')
-                var_info.append((start, vtype, name, fstring, long_desc))
+            long_desc = ' '.join(t[4:]).strip('"')
+            var_info.append((start, vtype, name, fstring, long_desc))
 
     columns = ['start', 'type', 'name', 'fstring', 'desc']
     variables = pd.DataFrame(var_info, columns=columns)
